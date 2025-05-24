@@ -53,7 +53,7 @@ export const zakatTypes: ZakatType[] = [
     id: 'tambang',
     name: 'Zakat Tambang & Laut',
     description: 'Zakat dari hasil tambang dan laut',
-    path: '/tambang'
+    path: '/tambang_laut' // Ubah dari '/tambang' ke '/tambang_laut'
   },
   {
     id: 'rikaz',
@@ -71,7 +71,7 @@ export const zakatTypes: ZakatType[] = [
     id: 'aset-produktif',
     name: 'Zakat Aset Produktif',
     description: 'Zakat dari properti dan aset yang disewakan',
-    path: '/aset-produktif'
+    path: '/aset_produktif' // Ubah dari '/aset-produktif' ke '/aset_produktif'
   },
   {
     id: 'warisan',
@@ -83,6 +83,6 @@ export const zakatTypes: ZakatType[] = [
     id: 'kendaraan-niaga',
     name: 'Zakat Kendaraan Niaga',
     description: 'Zakat dari kendaraan untuk usaha',
-    path: '/kendaraan-niaga'
+    path: '/kendaraan_niaga' // Ubah dari '/kendaraan-niaga' ke '/kendaraan_niaga'
   }
 ];

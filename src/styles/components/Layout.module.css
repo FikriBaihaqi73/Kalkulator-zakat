@@ -14,7 +14,7 @@
 .headerContent {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */ /* Hapus padding ini */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,7 +63,7 @@
 .footerContent {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */ /* Hapus padding ini */
   text-align: center;
 }
 

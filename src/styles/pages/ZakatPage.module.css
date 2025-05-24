@@ -31,11 +31,15 @@
 }
 
 .formSection {
-  /* Form styles */
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form {
-  /* Form container styles */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .buttonGroup {

@@ -20,7 +20,8 @@
   align-items: center;
 }
 
-.input {
+.input,
+select.input {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid #e2e8f0;
@@ -28,27 +29,39 @@
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   background-color: white;
+  /* Add padding to the left and right to make space for prefix/suffix */
+  padding-left: 2.5rem; /* Adjust if your prefix is wider */
+  padding-right: 2.5rem; /* Adjust if your suffix is wider */
 }
 
-.input:focus {
+.input:focus,
+select.input:focus {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.input.error {
+.input.error,
+select.input.error {
   border-color: #e53e3e;
 }
 
-.input.error:focus {
+.input.error:focus,
+select.input.error:focus {
   box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
 }
 
-.prefix, .suffix {
+.prefix,
+.suffix {
   position: absolute;
   color: #718096;
   font-size: 0.9rem;
   pointer-events: none;
+  /* Ensure prefix/suffix are above the input text */
+  z-index: 1;
+  /* Vertically center */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .prefix {
@@ -59,13 +72,14 @@
   right: 0.75rem;
 }
 
-.input:has(~ .prefix) {
+/* Remove these rules as padding is now applied directly to .input */
+/* .input:has(~ .prefix) {
   padding-left: 2.5rem;
 }
 
 .input:has(~ .suffix) {
   padding-right: 2.5rem;
-}
+} */
 
 .errorMessage {
   display: block;

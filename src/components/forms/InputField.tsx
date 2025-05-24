@@ -11,6 +11,7 @@ interface InputFieldProps {
   error?: string;
   suffix?: string;
   prefix?: string;
+  id?: string; // Added the id property here
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -22,7 +23,8 @@ const InputField: React.FC<InputFieldProps> = ({
   required = false,
   error,
   suffix,
-  prefix
+  prefix,
+  id // Added id here to destructure
 }) => {
   return (
     <div className={styles.inputGroup}>
@@ -39,6 +41,7 @@ const InputField: React.FC<InputFieldProps> = ({
           placeholder={placeholder}
           required={required}
           className={`${styles.input} ${error ? styles.error : ''}`}
+          id={id} // Added id to the input element
         />
         {suffix && <span className={styles.suffix}>{suffix}</span>}
       </div>

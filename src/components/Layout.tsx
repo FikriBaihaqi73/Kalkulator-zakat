@@ -41,7 +41,7 @@ const Layout: React.FC<LayoutProps> = ({
         
         <footer className={styles.footer}>
           <div className={styles.footerContent}>
-            <p>&copy; 2024 Kalkulator Zakat. Dibuat untuk edukasi dan kemudahan perhitungan zakat.</p>
+            <p>&copy; 2025 Kalkulator Zakat. Dibuat untuk edukasi dan kemudahan perhitungan zakat.</p>
             <p className={styles.disclaimer}>
               Hasil perhitungan ini bersifat estimasi. Konsultasikan dengan ulama atau lembaga zakat terpercaya untuk kepastian.
             </p>

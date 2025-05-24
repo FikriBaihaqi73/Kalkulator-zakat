@@ -1,0 +1,75 @@
+import React, { useState } from 'react';
+import Layout from '@/components/Layout';
+import Card from '@/components/ui/Card';
+import InputField from '@/components/forms/InputField';
+import Button from '@/components/ui/Button';
+import ResultDisplay from '@/components/forms/ResultDisplay';
+import { calculateZakatTabungan } from '@/utils/zakatCalculations';
+import { formatCurrency, parseNumber } from '@/utils/formatCurrency'; // Import parseNumber
+import { validatePositiveNumber } from '@/utils/validation';
+
+const ZakatWarisanPage: React.FC = () => {
+  const [nilaiWarisan, setNilaiWarisan] = useState<string>('');
+  const [hargaEmas, setHargaEmas] = useState<string>('');
+  const [result, setResult] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCalculate = () => {
+    const nilaiWarisanNum = parseFloat(nilaiWarisan.replace(/[^0-9]/g, ''));
+    const hargaEmasNum = parseFloat(hargaEmas.replace(/[^0-9]/g, ''));
+
+    if (!validatePositiveNumber(nilaiWarisanNum) || !validatePositiveNumber(hargaEmasNum)) {
+      setError('Mohon masukkan angka yang valid dan positif untuk semua field.');
+      setResult(null);
+      return;
+    }
+
+    setError(null);
+    // Zakat Warisan (undistributed) is calculated like Zakat Tabungan
+    const calculationResult = calculateZakatTabungan(nilaiWarisanNum, hargaEmasNum, true); // Assuming it's been held for a year
+    setResult(calculationResult);
+  };
+
+  const handleReset = () => {
+    setNilaiWarisan('');
+    setHargaEmas('');
+    setResult(null);
+    setError(null);
+  };
+
+  return (
+    <Layout>
+      <div className="container mx-auto py-8">
+        <Card title="Kalkulator Zakat Warisan (Belum Dibagikan)">
+          <p className="mb-6 text-gray-700">
+            Zakat warisan yang belum dibagikan wajib dikeluarkan sebesar 2.5% jika nilai warisan mencapai nishab (setara 85 gram emas) dan telah tersimpan selama satu tahun (haul).
+          </p>
+          <InputField
+            label="Total Nilai Warisan (Rp)"
+            id="nilaiWarisan"
+            value={nilaiWarisan}
+            onChange={(e) => setNilaiWarisan(formatCurrency(parseNumber(e)))} // Use parseNumber before formatCurrency
+            placeholder="Masukkan total nilai warisan"
+            required
+          />
+          <InputField
+            label="Harga Emas Saat Ini per Gram (Rp)"
+            id="hargaEmas"
+            value={hargaEmas}
+            onChange={(e) => setHargaEmas(formatCurrency(parseNumber(e)))} // Use parseNumber before formatCurrency
+            placeholder="Masukkan harga emas per gram"
+            required
+          />
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          <div className="flex space-x-4">
+            <Button onClick={handleCalculate}>Hitung Zakat</Button>
+            <Button onClick={handleReset} variant="secondary">Reset</Button>
+          </div>
+          {result !== null && <ResultDisplay result={result} zakatType="warisan" />}
+        </Card>
+      </div>
+    </Layout>
+  );
+};
+
+export default ZakatWarisanPage;
