@@ -6,10 +6,10 @@ import styles from '@/styles/components/ResultDisplay.module.css';
 
 interface ResultDisplayProps {
   result: ZakatCalculationResult | null; // Allow null
-  zakatType: string;
+  // zakatType: string; // Removed unused prop
 }
 
-const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, zakatType }) => {
+const ResultDisplay: React.FC<ResultDisplayProps> = ({ result /*, zakatType*/ }) => {
   // Add conditional rendering
   if (!result) {
     return null; // Or display a placeholder message

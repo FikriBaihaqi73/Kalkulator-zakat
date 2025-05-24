@@ -7,11 +7,12 @@ import ResultDisplay from '@/components/forms/ResultDisplay';
 import { calculateZakatTabungan } from '@/utils/zakatCalculations';
 import { formatCurrency, parseNumber } from '@/utils/formatCurrency'; // Import parseNumber
 import { validatePositiveNumber } from '@/utils/validation';
+import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
 
 const ZakatWarisanPage: React.FC = () => {
   const [nilaiWarisan, setNilaiWarisan] = useState<string>('');
   const [hargaEmas, setHargaEmas] = useState<string>('');
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<ZakatCalculationResult | null>(null); // Use specific type
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
@@ -65,7 +66,7 @@ const ZakatWarisanPage: React.FC = () => {
             <Button onClick={handleCalculate}>Hitung Zakat</Button>
             <Button onClick={handleReset} variant="secondary">Reset</Button>
           </div>
-          {result !== null && <ResultDisplay result={result} zakatType="warisan" />}
+          {result !== null && <ResultDisplay result={result} />}
         </Card>
       </div>
     </Layout>

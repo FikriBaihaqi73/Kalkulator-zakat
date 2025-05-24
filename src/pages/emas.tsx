@@ -123,7 +123,7 @@ const ZakatEmasPage: React.FC = () => {
           
           {result && (
             <div className={styles.resultSection}>
-              <ResultDisplay result={result} zakatType="emas" />
+              <ResultDisplay result={result} />
             </div>
           )}
         </div>

@@ -123,7 +123,7 @@ const ZakatTabunganPage: React.FC = () => {
           
           {result && (
             <div className={styles.resultSection}>
-              <ResultDisplay result={result} zakatType="tabungan" />
+              <ResultDisplay result={result}/>
             </div>
           )}
         </div>

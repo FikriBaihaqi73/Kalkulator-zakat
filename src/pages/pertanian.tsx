@@ -5,9 +5,10 @@ import InputField from '@/components/forms/InputField';
 import Button from '@/components/ui/Button';
 import ResultDisplay from '@/components/forms/ResultDisplay';
 import { calculateZakatPertanian } from '@/utils/zakatCalculations';
-import { formatCurrency, parseNumber } from '@/utils/formatCurrency';
+import { /* formatCurrency, */ parseNumber } from '@/utils/formatCurrency'; // Removed unused import
 import { validatePositiveNumber } from '@/utils/validation';
 import styles from '@/styles/pages/ZakatPage.module.css';
+import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
 
 const ZakatPertanianPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,10 +16,10 @@ const ZakatPertanianPage: React.FC = () => {
     jenisIrigasi: 'hujan' as 'hujan' | 'irigasi' | 'campuran',
     hargaPerKg: ''
   });
-  
-  const [result, setResult] = useState<any>(null);
+
+  const [result, setResult] = useState<ZakatCalculationResult | null>(null); // Use specific type
   const [errors, setErrors] = useState<{[key: string]: string}>({});
-  
+
   const handleInputChange = (field: string, value: string | 'hujan' | 'irigasi' | 'campuran') => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
@@ -122,7 +123,7 @@ const ZakatPertanianPage: React.FC = () => {
           </div>
           
           <div className={styles.resultSection}>
-            <ResultDisplay result={result} zakatType="pertanian" />
+            <ResultDisplay result={result} />
             
             <div className={styles.info}>
               <Card title="Informasi Zakat Pertanian">

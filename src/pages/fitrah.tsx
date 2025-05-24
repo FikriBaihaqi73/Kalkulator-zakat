@@ -5,7 +5,7 @@ import InputField from '@/components/forms/InputField';
 import Button from '@/components/ui/Button';
 import ResultDisplay from '@/components/forms/ResultDisplay';
 import { calculateZakatFitrah } from '@/utils/zakatCalculations';
-import { validateZakatForm } from '@/utils/validation';
+// import { validateZakatForm } from '@/utils/validation'; // Removed unused import
 import { ZakatCalculationResult } from '@/types/zakat';
 import { DEFAULT_PRICES, ZAKAT_FITRAH } from '@/utils/constants';
 import styles from '@/styles/pages/ZakatPage.module.css';
@@ -130,7 +130,7 @@ const ZakatFitrahPage: React.FC = () => {
           
           {result && (
             <div className={styles.resultSection}>
-              <ResultDisplay result={result} zakatType="fitrah" />
+              <ResultDisplay result={result} />
             </div>
           )}
         </div>

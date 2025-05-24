@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@/components/Layout';
 import Card from '@/components/ui/Card';
 import { NISHAB, ZAKAT_PERCENTAGE } from '@/utils/constants';
-import { formatCurrency } from '@/utils/formatCurrency';
+// import { formatCurrency } from '@/utils/formatCurrency'; // Removed unused import
 import styles from '@/styles/pages/ZakatPage.module.css';
 
 const PanduanPage: React.FC = () => {

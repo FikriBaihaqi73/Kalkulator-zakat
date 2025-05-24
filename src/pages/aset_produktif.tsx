@@ -122,7 +122,7 @@ const ZakatAsetProduktifPage: React.FC = () => {
 
           <div className={styles.resultSection}>
             <Card title="Hasil Perhitungan">
-              <ResultDisplay result={result} zakatType="aset_produktif" />
+              <ResultDisplay result={result} />
             </Card>
           </div>
         </div>

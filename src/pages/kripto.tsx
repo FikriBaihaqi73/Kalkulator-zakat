@@ -118,7 +118,7 @@ const ZakatKriptoPage: React.FC = () => {
 
           <div className={styles.resultSection}>
             <Card title="Hasil Perhitungan">
-              <ResultDisplay result={result} zakatType="kripto" />
+              <ResultDisplay result={result} />
             </Card>
           </div>
         </div>

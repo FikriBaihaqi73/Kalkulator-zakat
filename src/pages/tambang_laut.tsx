@@ -90,7 +90,7 @@ const ZakatTambangLautPage: React.FC = () => {
           <div className={styles.resultSection}>
             <Card title="Hasil Perhitungan">
               {/* Ensure result is not null before passing */}
-              {result && <ResultDisplay result={result} zakatType="tambang_laut" />}
+              {result && <ResultDisplay result={result} />}
             </Card>
           </div>
         </div>

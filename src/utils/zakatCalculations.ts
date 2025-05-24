@@ -1,6 +1,7 @@
 import { ZakatCalculationResult } from '@/types/zakat';
 import { ZAKAT_PERCENTAGE, NISHAB, ZAKAT_FITRAH } from './constants';
-import { formatCurrency } from './formatCurrency'; // Add this line
+import { formatCurrency } from './formatCurrency';
+import { getPeternakanZakat } from '@/data/peternakan'; // Change require to ES6 import
 
 // Zakat Fitrah
 export const calculateZakatFitrah = (
@@ -169,8 +170,8 @@ export const calculateZakatPeternakan = (
   digembalakan: boolean = true,
   sudahSetahun: boolean = true
 ): ZakatCalculationResult => {
-  const { getPeternakanZakat } = require('@/data/peternakan');
-  
+  // const { getPeternakanZakat } = require('@/data/peternakan'); // Removed require
+
   if (!digembalakan || !sudahSetahun) {
     return {
       isWajib: false,

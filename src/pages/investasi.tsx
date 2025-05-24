@@ -141,7 +141,7 @@ const ZakatInvestasiPage: React.FC = () => {
           
           {result && (
             <div className={styles.resultSection}>
-              <ResultDisplay result={result} zakatType="investasi" />
+              <ResultDisplay result={result} />
             </div>
           )}
         </div>
