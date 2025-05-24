@@ -130,7 +130,7 @@ const ZakatPeternakanPage: React.FC = () => {
 
           <div className={styles.resultSection}>
             <Card title="Hasil Perhitungan">
-              <ResultDisplay result={result}/>
+              <ResultDisplay result={result} unit="ekor"/>{/* Add unit prop here */}
             </Card>
           </div>
         </div>

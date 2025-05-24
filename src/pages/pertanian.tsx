@@ -126,8 +126,8 @@ const ZakatPertanianPage: React.FC = () => {
           
           <div className={styles.resultSection}>
             <ResultDisplay result={result} />
-            
-            <div className={styles.info}>
+          </div>
+          <div className={styles.info}>
               <Card title="Informasi Zakat Pertanian">
                 <ul className={styles.infoList}>
                   <li>Nishab zakat pertanian adalah 653 kg hasil panen.</li>
@@ -138,9 +138,9 @@ const ZakatPertanianPage: React.FC = () => {
                 </ul>
               </Card>
             </div>
-          </div>
         </div>
       </div>
+
     </Layout>
   );
 };

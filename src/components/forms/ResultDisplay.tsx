@@ -6,10 +6,10 @@ import styles from '@/styles/components/ResultDisplay.module.css';
 
 interface ResultDisplayProps {
   result: ZakatCalculationResult | null; // Allow null
-  // zakatType: string; // Removed unused prop
+  unit?: string; // Add optional unit prop
 }
 
-const ResultDisplay: React.FC<ResultDisplayProps> = ({ result /*, zakatType*/ }) => {
+const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, unit }) => {
   // Add conditional rendering
   if (!result) {
     return null; // Or display a placeholder message
@@ -27,20 +27,29 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ result /*, zakatType*/ })
         {result.isWajib && (
           <div className={styles.zakatAmount}>
             <span className={styles.amountLabel}>Jumlah Zakat:</span>
-            <span className={styles.amount}>{formatCurrency(result.zakatAmount)}</span>
+            {/* Use unit prop if provided, otherwise use formatCurrency */}
+            <span className={styles.amount}>
+              {unit ? `${result.zakatAmount} ${unit}` : formatCurrency(result.zakatAmount)}
+            </span>
           </div>
         )}
         
         <div className={styles.details}>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Total Aset:</span>
-            <span className={styles.detailValue}>{formatCurrency(result.totalAsset)}</span>
+            {/* Use unit prop for totalAsset if provided, otherwise use formatCurrency */}
+            <span className={styles.detailValue}>
+              {unit ? `${result.totalAsset} ${unit}` : formatCurrency(result.totalAsset)}
+            </span>
           </div>
           
           {result.nishab > 0 && (
             <div className={styles.detailItem}>
               <span className={styles.detailLabel}>Nishab:</span>
-              <span className={styles.detailValue}>{formatCurrency(result.nishab)}</span>
+              {/* Use unit prop for nishab if provided, otherwise use formatCurrency */}
+              <span className={styles.detailValue}>
+                {unit ? `${result.nishab} ${unit}` : formatCurrency(result.nishab)}
+              </span>
             </div>
           )}
         </div>
