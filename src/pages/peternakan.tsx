@@ -7,6 +7,7 @@ import ResultDisplay from '@/components/forms/ResultDisplay';
 import { calculateZakatPeternakan } from '@/utils/zakatCalculations';
 import { ZakatCalculationResult } from '@/types/zakat';
 import styles from '@/styles/pages/ZakatPage.module.css';
+import dropdownStyles from '@/styles/components/Dropdown.module.css'; // Import new styles
 
 const ZakatPeternakanPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -76,7 +77,7 @@ const ZakatPeternakanPage: React.FC = () => {
                 <div className={styles.inputGroup}>
                   <label className={styles.label}>Jenis Ternak</label>
                   <select
-                    className={styles.selectField}
+                    className={dropdownStyles.dropdown} // Use new styles
                     value={formData.jenisTernak}
                     onChange={(e) => handleInputChange('jenisTernak', e.target.value)}
                   >

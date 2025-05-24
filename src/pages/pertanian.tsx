@@ -9,6 +9,7 @@ import { /* formatCurrency, */ parseNumber } from '@/utils/formatCurrency'; // R
 import { validatePositiveNumber } from '@/utils/validation';
 import styles from '@/styles/pages/ZakatPage.module.css';
 import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
+import dropdownStyles from '@/styles/components/Dropdown.module.css'; // Import new styles
 
 const ZakatPertanianPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -96,7 +97,7 @@ const ZakatPertanianPage: React.FC = () => {
                   <select
                     value={formData.jenisIrigasi}
                     onChange={(e) => handleInputChange('jenisIrigasi', e.target.value as 'hujan' | 'irigasi' | 'campuran')}
-                    className={styles.input}
+                    className={dropdownStyles.dropdown} // Use new styles
                   >
                     <option value="hujan">Air Hujan / Sungai (10%)</option>
                     <option value="irigasi">Irigasi (5%)</option>

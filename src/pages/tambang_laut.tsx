@@ -73,7 +73,8 @@ const ZakatTambangLautPage: React.FC = () => {
                   label="Nilai Bersih Hasil Tambang/laut"
                   type="number"
                   value={formData.nilaiTambang}
-                  onChange={(value) => handleInputChange('nilaiTambang', value)}              placeholder="Masukkan nilai bersih hasil tambang"
+                  onChange={(value) => handleInputChange('nilaiTambang', value)}              
+                  placeholder="Masukkan nilai bersih hasil tambang/laut"
                   required
                   error={errors.nilaiTambang}
                   prefix="Rp"
