@@ -52,6 +52,14 @@ const Layout: React.FC<LayoutProps> = ({
             <p className={styles.disclaimer}>
               Hasil perhitungan ini bersifat estimasi. Konsultasikan dengan ulama atau lembaga zakat terpercaya untuk kepastian.
             </p>
+            <a 
+              href="https://teer.id/apg0i4vaap2blgwy8lru" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.supportDeveloper}
+            >
+              ☕ Dukung Developer
+            </a>
           </div>
         </footer>
       </div>
