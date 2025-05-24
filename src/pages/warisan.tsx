@@ -10,14 +10,15 @@ import { validatePositiveNumber } from '@/utils/validation';
 import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
 
 const ZakatWarisanPage: React.FC = () => {
-  const [nilaiWarisan, setNilaiWarisan] = useState<string>('');
-  const [hargaEmas, setHargaEmas] = useState<string>('');
+  const [nilaiWarisan, setNilaiWarisan] = useState<number>(0);
+  const [hargaEmas, setHargaEmas] = useState<number>(0);
   const [result, setResult] = useState<ZakatCalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
-    const nilaiWarisanNum = parseNumber(nilaiWarisan);
-    const hargaEmasNum = parseNumber(hargaEmas);
+    // Use state values directly as they are already numbers
+    const nilaiWarisanNum = nilaiWarisan;
+    const hargaEmasNum = hargaEmas;
 
     if (!validatePositiveNumber(nilaiWarisanNum) || !validatePositiveNumber(hargaEmasNum)) {
       setError('Mohon masukkan angka yang valid dan positif untuk semua field.');
@@ -32,8 +33,8 @@ const ZakatWarisanPage: React.FC = () => {
   };
 
   const handleReset = () => {
-    setNilaiWarisan('');
-    setHargaEmas('');
+    setNilaiWarisan(0);
+    setHargaEmas(0);
     setResult(null);
     setError(null);
   };
@@ -48,16 +49,22 @@ const ZakatWarisanPage: React.FC = () => {
           <InputField
             label="Total Nilai Warisan (Rp)"
             id="nilaiWarisan"
-            value={formatCurrency(parseNumber(nilaiWarisan))}
-            onChange={setNilaiWarisan} // Corrected: Pass setNilaiWarisan directly
+            value={formatCurrency(nilaiWarisan)} // Format the number state for display
+            onChange={(value) => { // value is the raw input string from InputField
+              const parsedValue = parseNumber(value);
+              setNilaiWarisan(parsedValue); // Update state with the parsed number
+            }}
             placeholder="Masukkan total nilai warisan"
             required
           />
           <InputField
             label="Harga Emas Saat Ini per Gram (Rp)"
             id="hargaEmas"
-            value={formatCurrency(parseNumber(hargaEmas))}
-            onChange={setHargaEmas} // Corrected: Pass setHargaEmas directly
+            value={formatCurrency(hargaEmas)} // Format the number state for display
+            onChange={(value) => { // value is the raw input string from InputField
+              const parsedValue = parseNumber(value);
+              setHargaEmas(parsedValue); // Update state with the parsed number
+            }}
             placeholder="Masukkan harga emas per gram"
             required
           />

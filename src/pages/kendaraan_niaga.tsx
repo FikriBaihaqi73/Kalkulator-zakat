@@ -10,16 +10,17 @@ import { validatePositiveNumber } from '@/utils/validation';
 import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
 
 const ZakatKendaraanNiagaPage: React.FC = () => {
-  const [pendapatanTahunan, setPendapatanTahunan] = useState<string>('');
-  const [biayaOperasionalTahunan, setBiayaOperasionalTahunan] = useState<string>('');
-  const [hargaEmas, setHargaEmas] = useState<string>('');
+  const [pendapatanTahunan, setPendapatanTahunan] = useState<number>(0);
+  const [biayaOperasionalTahunan, setBiayaOperasionalTahunan] = useState<number>(0);
+  const [hargaEmas, setHargaEmas] = useState<number>(0);
   const [result, setResult] = useState<ZakatCalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
-    const pendapatanTahunanNum = parseNumber(pendapatanTahunan);
-    const biayaOperasionalTahunanNum = parseNumber(biayaOperasionalTahunan);
-    const hargaEmasNum = parseNumber(hargaEmas);
+    // Use state values directly as they are already numbers
+    const pendapatanTahunanNum = pendapatanTahunan;
+    const biayaOperasionalTahunanNum = biayaOperasionalTahunan;
+    const hargaEmasNum = hargaEmas;
 
     if (!validatePositiveNumber(pendapatanTahunanNum) || !validatePositiveNumber(biayaOperasionalTahunanNum) || !validatePositiveNumber(hargaEmasNum)) {
       setError('Mohon masukkan angka yang valid dan positif untuk semua field.');
@@ -34,9 +35,9 @@ const ZakatKendaraanNiagaPage: React.FC = () => {
   };
 
   const handleReset = () => {
-    setPendapatanTahunan('');
-    setBiayaOperasionalTahunan('');
-    setHargaEmas('');
+    setPendapatanTahunan(0);
+    setBiayaOperasionalTahunan(0);
+    setHargaEmas(0);
     setResult(null);
     setError(null);
   };
@@ -51,24 +52,33 @@ const ZakatKendaraanNiagaPage: React.FC = () => {
           <InputField
             label="Pendapatan Tahunan (Rp)"
             id="pendapatanTahunan"
-            value={formatCurrency(parseNumber(pendapatanTahunan))}
-            onChange={setPendapatanTahunan} // Corrected: Pass setPendapatanTahunan directly
+            value={formatCurrency(pendapatanTahunan)} // Format the number state for display
+            onChange={(value) => { // value is the raw input string from InputField
+              const parsedValue = parseNumber(value);
+              setPendapatanTahunan(parsedValue);
+            }}
             placeholder="Masukkan total pendapatan tahunan"
             required
           />
            <InputField
             label="Biaya Operasional Tahunan (Rp)"
             id="biayaOperasionalTahunan"
-            value={formatCurrency(parseNumber(biayaOperasionalTahunan))}
-            onChange={setBiayaOperasionalTahunan} // Corrected: Pass setBiayaOperasionalTahunan directly
+            value={formatCurrency(biayaOperasionalTahunan)} // Format the number state for display
+            onChange={(value) => { // value is the raw input string from InputField
+              const parsedValue = parseNumber(value);
+              setBiayaOperasionalTahunan(parsedValue);
+            }}
             placeholder="Masukkan total biaya operasional tahunan"
             required
           />
           <InputField
             label="Harga Emas Saat Ini per Gram (Rp)"
             id="hargaEmas"
-            value={formatCurrency(parseNumber(hargaEmas))}
-            onChange={setHargaEmas} // Corrected: Pass setHargaEmas directly
+            value={formatCurrency(hargaEmas)} // Format the number state for display
+            onChange={(value) => { // value is the raw input string from InputField
+              const parsedValue = parseNumber(value);
+              setHargaEmas(parsedValue);
+            }}
             placeholder="Masukkan harga emas per gram"
             required
           />
