@@ -1,0 +1,118 @@
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 1rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: #718096;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2d3748;
+}
+
+.zakatGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.zakatCard {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.zakatCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.zakatName {
+  margin-bottom: 1rem;
+}
+
+.zakatLink {
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.zakatLink:hover {
+  text-decoration: underline;
+}
+
+.zakatDescription {
+  color: #718096;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.calculateButton {
+  display: inline-flex;
+  align-items: center;
+  color: #667eea;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.calculateButton:hover {
+  color: #5a67d8;
+  text-decoration: none;
+}
+
+.info {
+  margin-top: 3rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.infoLink {
+  display: inline-flex;
+  align-items: center;
+  color: #667eea;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.infoLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .zakatGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,92 @@
+.resultCard {
+  border-left: 4px solid #48bb78;
+  background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+}
+
+.resultCard:has(.resultTitle:contains("Tidak Wajib")) {
+  border-left-color: #ed8936;
+  background: linear-gradient(135deg, #fffaf0 0%, #fbd38d 100%);
+}
+
+.resultHeader {
+  margin-bottom: 1.5rem;
+}
+
+.resultTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.zakatAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.amountLabel {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #38a169;
+}
+
+.details {
+  margin-bottom: 1.5rem;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detailLabel {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.detailValue {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.explanation {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.explanationTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.explanationText {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.reminder {
+  background-color: #bee3f8;
+  border: 1px solid #90cdf4;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.reminderText {
+  color: #2c5282;
+  margin: 0;
+}
