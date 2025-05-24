@@ -85,6 +85,7 @@ const ZakatKriptoPage: React.FC = () => {
                   required
                   error={errors.nilaiAsetDigital}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <InputField
@@ -96,6 +97,7 @@ const ZakatKriptoPage: React.FC = () => {
                   required
                   error={errors.hargaEmas}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <div className={styles.checkboxGroup}>

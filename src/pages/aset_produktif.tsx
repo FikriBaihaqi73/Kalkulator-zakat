@@ -88,6 +88,7 @@ const ZakatAsetProduktifPage: React.FC = () => {
                   required
                   error={errors.pendapatanSewa}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <InputField
@@ -99,6 +100,7 @@ const ZakatAsetProduktifPage: React.FC = () => {
                   required
                   error={errors.biayaOperasional}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <InputField
@@ -110,6 +112,7 @@ const ZakatAsetProduktifPage: React.FC = () => {
                   required
                   error={errors.hargaEmas}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <div className={styles.buttonGroup}>

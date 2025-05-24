@@ -95,6 +95,7 @@ const ZakatPeternakanPage: React.FC = () => {
                   required
                   error={errors.jumlahTernak}
                   suffix="ekor"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <div className={styles.checkboxGroup}>

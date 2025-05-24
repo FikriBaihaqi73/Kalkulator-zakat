@@ -12,5 +12,7 @@ export const formatNumber = (number: number): string => {
 };
 
 export const parseNumber = (value: string): number => {
-  return parseFloat(value.replace(/[^0-9.-]/g, '')) || 0;
+  // Hapus pemisah ribuan (titik) dan ganti pemisah desimal (koma) dengan titik
+  const cleanedValue = value.replace(/\./g, '').replace(/,/g, '.');
+  return parseFloat(cleanedValue) || 0;
 };

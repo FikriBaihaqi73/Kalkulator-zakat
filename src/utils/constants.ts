@@ -19,5 +19,6 @@ export const ZAKAT_FITRAH = {
 
 export const DEFAULT_PRICES = {
   EMAS_PER_GRAM: 1000000, // Rp per gram
-  BERAS_PER_KG: 15000 // Rp per kg
+  BERAS_PER_KG: 15000, // Rp per kg
+  PERAK_PER_GRAM: 12000 // Contoh harga perak per gram, sesuaikan jika perlu
 };

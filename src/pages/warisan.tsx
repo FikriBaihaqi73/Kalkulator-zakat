@@ -5,20 +5,19 @@ import InputField from '@/components/forms/InputField';
 import Button from '@/components/ui/Button';
 import ResultDisplay from '@/components/forms/ResultDisplay';
 import { calculateZakatTabungan } from '@/utils/zakatCalculations';
-import { formatCurrency, parseNumber } from '@/utils/formatCurrency'; // Import parseNumber
+import { /* formatCurrency, */ parseNumber } from '@/utils/formatCurrency'; // Removed formatCurrency import
 import { validatePositiveNumber } from '@/utils/validation';
 import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
 
 const ZakatWarisanPage: React.FC = () => {
-  const [nilaiWarisan, setNilaiWarisan] = useState<number>(0);
-  const [hargaEmas, setHargaEmas] = useState<number>(0);
+  const [nilaiWarisan, setNilaiWarisan] = useState<string>(''); // State type is string
+  const [hargaEmas, setHargaEmas] = useState<string>(''); // State type is string
   const [result, setResult] = useState<ZakatCalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
-    // Use state values directly as they are already numbers
-    const nilaiWarisanNum = nilaiWarisan;
-    const hargaEmasNum = hargaEmas;
+    const nilaiWarisanNum = parseNumber(nilaiWarisan); // Parse string value for calculation
+    const hargaEmasNum = parseNumber(hargaEmas); // Parse string value for calculation
 
     if (!validatePositiveNumber(nilaiWarisanNum) || !validatePositiveNumber(hargaEmasNum)) {
       setError('Mohon masukkan angka yang valid dan positif untuk semua field.');
@@ -33,8 +32,8 @@ const ZakatWarisanPage: React.FC = () => {
   };
 
   const handleReset = () => {
-    setNilaiWarisan(0);
-    setHargaEmas(0);
+    setNilaiWarisan(''); // Reset to empty string
+    setHargaEmas(''); // Reset to empty string
     setResult(null);
     setError(null);
   };
@@ -49,24 +48,24 @@ const ZakatWarisanPage: React.FC = () => {
           <InputField
             label="Total Nilai Warisan (Rp)"
             id="nilaiWarisan"
-            value={formatCurrency(nilaiWarisan)} // Format the number state for display
-            onChange={(value) => { // value is the raw input string from InputField
-              const parsedValue = parseNumber(value);
-              setNilaiWarisan(parsedValue); // Update state with the parsed number
-            }}
+            value={nilaiWarisan}
+            onChange={setNilaiWarisan}
             placeholder="Masukkan total nilai warisan"
             required
+            prefix="Rp"
+            type="number"
+            useThousandSeparator={true} // Aktifkan thousand separator
           />
           <InputField
             label="Harga Emas Saat Ini per Gram (Rp)"
             id="hargaEmas"
-            value={formatCurrency(hargaEmas)} // Format the number state for display
-            onChange={(value) => { // value is the raw input string from InputField
-              const parsedValue = parseNumber(value);
-              setHargaEmas(parsedValue); // Update state with the parsed number
-            }}
+            value={hargaEmas}
+            onChange={setHargaEmas}
             placeholder="Masukkan harga emas per gram"
             required
+            prefix="Rp"
+            type="number"
+            useThousandSeparator={true} // Aktifkan thousand separator
           />
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <div className="flex space-x-4">

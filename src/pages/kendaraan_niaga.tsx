@@ -5,22 +5,21 @@ import InputField from '@/components/forms/InputField';
 import Button from '@/components/ui/Button';
 import ResultDisplay from '@/components/forms/ResultDisplay';
 import { calculateZakatAsetProduktif } from '@/utils/zakatCalculations'; // Use aset produktif calculation
-import { formatCurrency, parseNumber } from '@/utils/formatCurrency';
+import { /* formatCurrency, */ parseNumber } from '@/utils/formatCurrency'; // Removed formatCurrency import
 import { validatePositiveNumber } from '@/utils/validation';
 import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculationResult
 
 const ZakatKendaraanNiagaPage: React.FC = () => {
-  const [pendapatanTahunan, setPendapatanTahunan] = useState<number>(0);
-  const [biayaOperasionalTahunan, setBiayaOperasionalTahunan] = useState<number>(0);
-  const [hargaEmas, setHargaEmas] = useState<number>(0);
+  const [pendapatanTahunan, setPendapatanTahunan] = useState<string>(''); // State type is string
+  const [biayaOperasionalTahunan, setBiayaOperasionalTahunan] = useState<string>(''); // State type is string
+  const [hargaEmas, setHargaEmas] = useState<string>(''); // State type is string
   const [result, setResult] = useState<ZakatCalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
-    // Use state values directly as they are already numbers
-    const pendapatanTahunanNum = pendapatanTahunan;
-    const biayaOperasionalTahunanNum = biayaOperasionalTahunan;
-    const hargaEmasNum = hargaEmas;
+    const pendapatanTahunanNum = parseNumber(pendapatanTahunan); // Parse string value for calculation
+    const biayaOperasionalTahunanNum = parseNumber(biayaOperasionalTahunan); // Parse string value for calculation
+    const hargaEmasNum = parseNumber(hargaEmas); // Parse string value for calculation
 
     if (!validatePositiveNumber(pendapatanTahunanNum) || !validatePositiveNumber(biayaOperasionalTahunanNum) || !validatePositiveNumber(hargaEmasNum)) {
       setError('Mohon masukkan angka yang valid dan positif untuk semua field.');
@@ -35,9 +34,9 @@ const ZakatKendaraanNiagaPage: React.FC = () => {
   };
 
   const handleReset = () => {
-    setPendapatanTahunan(0);
-    setBiayaOperasionalTahunan(0);
-    setHargaEmas(0);
+    setPendapatanTahunan(''); // Reset to empty string
+    setBiayaOperasionalTahunan(''); // Reset to empty string
+    setHargaEmas(''); // Reset to empty string
     setResult(null);
     setError(null);
   };
@@ -52,35 +51,32 @@ const ZakatKendaraanNiagaPage: React.FC = () => {
           <InputField
             label="Pendapatan Tahunan (Rp)"
             id="pendapatanTahunan"
-            value={formatCurrency(pendapatanTahunan)} // Format the number state for display
-            onChange={(value) => { // value is the raw input string from InputField
-              const parsedValue = parseNumber(value);
-              setPendapatanTahunan(parsedValue);
-            }}
+            value={pendapatanTahunan} // Use raw string value for display
+            onChange={setPendapatanTahunan} // Pass state setter directly
             placeholder="Masukkan total pendapatan tahunan"
             required
+            prefix="Rp"
+            useThousandSeparator={true} // Tambahkan ini
           />
            <InputField
             label="Biaya Operasional Tahunan (Rp)"
             id="biayaOperasionalTahunan"
-            value={formatCurrency(biayaOperasionalTahunan)} // Format the number state for display
-            onChange={(value) => { // value is the raw input string from InputField
-              const parsedValue = parseNumber(value);
-              setBiayaOperasionalTahunan(parsedValue);
-            }}
+            value={biayaOperasionalTahunan} // Use raw string value for display
+            onChange={setBiayaOperasionalTahunan} // Pass state setter directly
             placeholder="Masukkan total biaya operasional tahunan"
             required
+            prefix="Rp"
+            useThousandSeparator={true} // Tambahkan ini
           />
           <InputField
             label="Harga Emas Saat Ini per Gram (Rp)"
             id="hargaEmas"
-            value={formatCurrency(hargaEmas)} // Format the number state for display
-            onChange={(value) => { // value is the raw input string from InputField
-              const parsedValue = parseNumber(value);
-              setHargaEmas(parsedValue);
-            }}
+            value={hargaEmas} // Use raw string value for display
+            onChange={setHargaEmas} // Pass state setter directly
             placeholder="Masukkan harga emas per gram"
             required
+            prefix="Rp"
+            useThousandSeparator={true} // Tambahkan ini
           />
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <div className="flex space-x-4">

@@ -50,6 +50,38 @@ export const calculateZakatEmas = (
   };
 };
 
+// Zakat Emas and Perak
+export const calculateZakatEmasPerak = (
+  berat: number,
+  hargaPerGram: number,
+  jenis: 'emas' | 'perak',
+  sudahSetahun: boolean = true
+): ZakatCalculationResult => {
+  const totalNilai = berat * hargaPerGram;
+  // Use the correct nishab based on the type (emas or perak)
+  const nishab = jenis === 'emas' ? NISHAB.EMAS : NISHAB.PERAK;
+  const nishabNilai = nishab * hargaPerGram;
+  const isWajib = berat >= nishab && sudahSetahun;
+  const zakatAmount = isWajib ? totalNilai * ZAKAT_PERCENTAGE.STANDARD : 0;
+
+  let explanation = '';
+  if (!sudahSetahun) {
+    explanation = `Zakat ${jenis} tidak wajib karena belum disimpan selama 1 tahun (haul).`;
+  } else if (berat < nishab) {
+    explanation = `Zakat ${jenis} tidak wajib karena berat ${jenis} (${berat} gram) belum mencapai nishab (${nishab} gram).`;
+  } else {
+    explanation = `Zakat wajib 2.5% dari total nilai ${jenis} ${berat} gram yang sudah disimpan 1 tahun.`;
+  }
+
+  return {
+    isWajib,
+    zakatAmount,
+    explanation,
+    nishab: nishabNilai,
+    totalAsset: totalNilai
+  };
+};
+
 // Zakat Tabungan
 export const calculateZakatTabungan = (
   saldoTabungan: number,

@@ -84,6 +84,7 @@ const ZakatTabunganPage: React.FC = () => {
                   required
                   error={errors.saldoTabungan}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <InputField
@@ -95,6 +96,7 @@ const ZakatTabunganPage: React.FC = () => {
                   required
                   error={errors.hargaEmas}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <div className={styles.checkboxGroup}>

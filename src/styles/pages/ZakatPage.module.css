@@ -6,19 +6,19 @@
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: calc(1rem * 2);
 }
 
 .title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #2d3748;
+  color: #343a40;
 }
 
 .description {
   font-size: 1.1rem;
-  color: #718096;
+  color: #6c757d;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -26,14 +26,15 @@
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: calc(1rem * 2);
+  margin-bottom: calc(1rem * 2);
 }
 
 .formSection {
-  background-color: #fff;
-  border-radius: 0.75rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: calc(1rem * 1.5);
 }
 
 .form {
@@ -45,15 +46,19 @@
 .buttonGroup {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: calc(1rem * 1.5);
 }
 
 .resultSection {
   /* Result section styles */
+  padding: calc(1rem * 1.5);
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info {
-  margin-top: 2rem;
+  margin-top: calc(1rem * 2);
 }
 
 .infoList {
@@ -63,16 +68,16 @@
 
 .infoList li {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e9ecef;
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: calc(1rem * 1.5);
 }
 
 .infoList li:before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #48bb78;
+  color: #28a745;
   font-weight: bold;
 }
 

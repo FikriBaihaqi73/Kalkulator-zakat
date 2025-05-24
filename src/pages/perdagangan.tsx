@@ -95,6 +95,7 @@ const ZakatPerdaganganPage: React.FC = () => {
                   required
                   error={errors.asetDagang}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <InputField
@@ -105,6 +106,7 @@ const ZakatPerdaganganPage: React.FC = () => {
                   placeholder="Piutang yang dapat ditagih"
                   error={errors.piutangDagang}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <InputField
@@ -115,6 +117,7 @@ const ZakatPerdaganganPage: React.FC = () => {
                   placeholder="Utang untuk keperluan dagang"
                   error={errors.utangDagang}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <InputField
@@ -126,6 +129,7 @@ const ZakatPerdaganganPage: React.FC = () => {
                   required
                   error={errors.hargaEmas}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <div className={styles.buttonGroup}>

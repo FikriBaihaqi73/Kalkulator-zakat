@@ -73,6 +73,7 @@ const ZakatRikazPage: React.FC = () => {
                   required
                   error={errors.nilaiTemuan}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <div className={styles.buttonGroup}>

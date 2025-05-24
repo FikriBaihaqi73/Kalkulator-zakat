@@ -86,6 +86,7 @@ const ZakatPertanianPage: React.FC = () => {
                   required
                   error={errors.hasilPanen}
                   suffix="kg"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <div className={styles.inputGroup}>
@@ -112,6 +113,7 @@ const ZakatPertanianPage: React.FC = () => {
                   required
                   error={errors.hargaPerKg}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <div className={styles.buttonGroup}>

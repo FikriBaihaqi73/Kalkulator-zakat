@@ -41,6 +41,9 @@ const ZakatTambangLautPage: React.FC = () => {
       parseFloat(formData.nilaiTambang)
     );
 
+    // Modify the explanation text
+    calculationResult.explanation = `Perhitungan zakat hasil tambang/laut ini menggunakan pendekatan zakat Rikaz (barang temuan) dengan kadar 20% dari nilai bersih hasil tambang. Nishab tidak berlaku dalam perhitungan ini.`;
+
     setResult(calculationResult);
   };
 
@@ -64,23 +67,23 @@ const ZakatTambangLautPage: React.FC = () => {
 
         <div className={styles.content}>
           <div className={styles.formSection}>
-            <Card title="Form Perhitungan Zakat Tambang">
+            <Card title="Form Perhitungan Zakat Tambang/laut">
               <div className={styles.form}>
                 <InputField
-                  label="Nilai Bersih Hasil Tambang"
+                  label="Nilai Bersih Hasil Tambang/laut"
                   type="number"
                   value={formData.nilaiTambang}
-                  onChange={(value) => handleInputChange('nilaiTambang', value)}
-                  placeholder="Masukkan nilai bersih hasil tambang"
+                  onChange={(value) => handleInputChange('nilaiTambang', value)}              placeholder="Masukkan nilai bersih hasil tambang"
                   required
                   error={errors.nilaiTambang}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 {/* Add form fields for Hasil Laut here if decided */}
 
                 <div className={styles.buttonGroup}>
-                  <Button onClick={handleCalculate} variant="primary">Hitung Zakat Tambang</Button>
+                  <Button onClick={handleCalculate} variant="primary">Hitung Zakat Tambang/laut</Button>
                   <Button onClick={handleReset} variant="secondary">Reset</Button>
                 </div>
               </div>

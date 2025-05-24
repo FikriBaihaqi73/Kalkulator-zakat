@@ -98,6 +98,7 @@ const ZakatProfesiPage: React.FC = () => {
                   required
                   error={errors.monthlyIncome}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                  <InputField
@@ -108,6 +109,7 @@ const ZakatProfesiPage: React.FC = () => {
                   placeholder="Masukkan pendapatan lain (jika ada)"
                   error={errors.otherIncome}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                  <InputField
@@ -118,6 +120,7 @@ const ZakatProfesiPage: React.FC = () => {
                   placeholder="Masukkan pengeluaran atau hutang (jika ada)"
                   error={errors.deductions}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <InputField
@@ -130,6 +133,7 @@ const ZakatProfesiPage: React.FC = () => {
                   error={errors.nishabEmas}
                   prefix="Rp"
                   suffix="/gram"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
 
                 <div className={styles.buttonGroup}>

@@ -1,17 +1,20 @@
 .inputGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  position: relative;
 }
 
 .label {
   display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
   color: #2d3748;
   font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 
 .required {
   color: #e53e3e;
+  margin-left: 0.25rem;
 }
 
 .inputWrapper {
@@ -23,32 +26,62 @@
 .input,
 select.input {
   width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid rgba(226, 232, 240, 0.6);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: white;
-  /* Add padding to the left and right to make space for prefix/suffix */
-  padding-left: 2.5rem; /* Adjust if your prefix is wider */
-  padding-right: 2.5rem; /* Adjust if your suffix is wider */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.input::placeholder {
+  color: #a0aec0;
+  transition: color 0.3s ease;
 }
 
 .input:focus,
 select.input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.1),
+    0 8px 32px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.input:focus::placeholder {
+  color: #cbd5e0;
+}
+
+.inputGroup:focus-within .label {
+  color: #667eea;
 }
 
 .input.error,
 select.input.error {
   border-color: #e53e3e;
+  background: rgba(254, 242, 242, 0.95);
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
 }
 
 .input.error:focus,
 select.input.error:focus {
-  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+  box-shadow: 
+    0 0 0 4px rgba(229, 62, 62, 0.1),
+    0 8px 32px rgba(229, 62, 62, 0.15);
+  background: rgba(255, 255, 255, 1);
 }
 
 .prefix,
@@ -56,34 +89,107 @@ select.input.error:focus {
   position: absolute;
   color: #718096;
   font-size: 0.9rem;
+  font-weight: 500;
   pointer-events: none;
-  /* Ensure prefix/suffix are above the input text */
-  z-index: 1;
-  /* Vertically center */
+  z-index: 2;
   top: 50%;
   transform: translateY(-50%);
+  transition: color 0.3s ease;
 }
 
 .prefix {
-  left: 0.75rem;
+  left: 1.25rem;
 }
 
 .suffix {
-  right: 0.75rem;
+  right: 1.25rem;
 }
 
-/* Remove these rules as padding is now applied directly to .input */
-/* .input:has(~ .prefix) {
-  padding-left: 2.5rem;
+.inputWrapper:focus-within .prefix,
+.inputWrapper:focus-within .suffix {
+  color: #667eea;
+}
+
+/* Adjust input padding when prefix/suffix are present */
+.input:has(~ .prefix) {
+  padding-left: 3rem;
 }
 
 .input:has(~ .suffix) {
-  padding-right: 2.5rem;
-} */
+  padding-right: 3rem;
+}
+
+/* Fallback for browsers that don't support :has() */
+.hasPrefix {
+  padding-left: 3rem !important;
+}
+
+.hasSuffix {
+  padding-right: 3rem !important;
+}
 
 .errorMessage {
   display: block;
   color: #e53e3e;
   font-size: 0.875rem;
-  margin-top: 0.25rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding-left: 0.25rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modern floating label variant */
+.floatingLabel {
+  position: relative;
+}
+
+.floatingLabel .label {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0 0.5rem;
+  margin: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.floatingLabel .input:focus + .label,
+.floatingLabel .input:not(:placeholder-shown) + .label {
+  top: 0;
+  font-size: 0.8rem;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.floatingLabel .input {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Select styling */
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  cursor: pointer;
+}
+
+select.input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23667eea' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
 }

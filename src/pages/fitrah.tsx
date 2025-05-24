@@ -103,6 +103,7 @@ const ZakatFitrahPage: React.FC = () => {
                   required
                   error={errors.hargaBeras}
                   prefix="Rp"
+                  useThousandSeparator={true} // Tambahkan ini
                 />
                 
                 <InputField
