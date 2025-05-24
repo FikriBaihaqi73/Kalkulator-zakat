@@ -12,12 +12,12 @@ import { ZakatCalculationResult } from '@/types/zakat'; // Import ZakatCalculati
 const ZakatWarisanPage: React.FC = () => {
   const [nilaiWarisan, setNilaiWarisan] = useState<string>('');
   const [hargaEmas, setHargaEmas] = useState<string>('');
-  const [result, setResult] = useState<ZakatCalculationResult | null>(null); // Use specific type
+  const [result, setResult] = useState<ZakatCalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
-    const nilaiWarisanNum = parseFloat(nilaiWarisan.replace(/[^0-9]/g, ''));
-    const hargaEmasNum = parseFloat(hargaEmas.replace(/[^0-9]/g, ''));
+    const nilaiWarisanNum = parseNumber(nilaiWarisan);
+    const hargaEmasNum = parseNumber(hargaEmas);
 
     if (!validatePositiveNumber(nilaiWarisanNum) || !validatePositiveNumber(hargaEmasNum)) {
       setError('Mohon masukkan angka yang valid dan positif untuk semua field.');
@@ -27,7 +27,7 @@ const ZakatWarisanPage: React.FC = () => {
 
     setError(null);
     // Zakat Warisan (undistributed) is calculated like Zakat Tabungan
-    const calculationResult = calculateZakatTabungan(nilaiWarisanNum, hargaEmasNum, true); // Assuming it's been held for a year
+    const calculationResult = calculateZakatTabungan(nilaiWarisanNum, hargaEmasNum, true);
     setResult(calculationResult);
   };
 
@@ -48,16 +48,16 @@ const ZakatWarisanPage: React.FC = () => {
           <InputField
             label="Total Nilai Warisan (Rp)"
             id="nilaiWarisan"
-            value={nilaiWarisan}
-            onChange={(e) => setNilaiWarisan(formatCurrency(parseNumber(e)))} // Use parseNumber before formatCurrency
+            value={formatCurrency(parseNumber(nilaiWarisan))}
+            onChange={setNilaiWarisan} // Corrected: Pass setNilaiWarisan directly
             placeholder="Masukkan total nilai warisan"
             required
           />
           <InputField
             label="Harga Emas Saat Ini per Gram (Rp)"
             id="hargaEmas"
-            value={hargaEmas}
-            onChange={(e) => setHargaEmas(formatCurrency(parseNumber(e)))} // Use parseNumber before formatCurrency
+            value={formatCurrency(parseNumber(hargaEmas))}
+            onChange={setHargaEmas} // Corrected: Pass setHargaEmas directly
             placeholder="Masukkan harga emas per gram"
             required
           />
@@ -66,7 +66,7 @@ const ZakatWarisanPage: React.FC = () => {
             <Button onClick={handleCalculate}>Hitung Zakat</Button>
             <Button onClick={handleReset} variant="secondary">Reset</Button>
           </div>
-          {result !== null && <ResultDisplay result={result} />}
+          {result !== null && <ResultDisplay result={result} />} {/* Use zakatType "warisan" */}
         </Card>
       </div>
     </Layout>

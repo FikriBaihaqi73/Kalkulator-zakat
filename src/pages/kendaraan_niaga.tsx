@@ -13,7 +13,7 @@ const ZakatKendaraanNiagaPage: React.FC = () => {
   const [pendapatanTahunan, setPendapatanTahunan] = useState<string>('');
   const [biayaOperasionalTahunan, setBiayaOperasionalTahunan] = useState<string>('');
   const [hargaEmas, setHargaEmas] = useState<string>('');
-  const [result, setResult] = useState<ZakatCalculationResult | null>(null); // Use specific type
+  const [result, setResult] = useState<ZakatCalculationResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleCalculate = () => {
@@ -51,24 +51,24 @@ const ZakatKendaraanNiagaPage: React.FC = () => {
           <InputField
             label="Pendapatan Tahunan (Rp)"
             id="pendapatanTahunan"
-            value={pendapatanTahunan}
-            onChange={(e) => setPendapatanTahunan(formatCurrency(parseNumber(e)))}
+            value={formatCurrency(parseNumber(pendapatanTahunan))}
+            onChange={setPendapatanTahunan} // Corrected: Pass setPendapatanTahunan directly
             placeholder="Masukkan total pendapatan tahunan"
             required
           />
            <InputField
             label="Biaya Operasional Tahunan (Rp)"
             id="biayaOperasionalTahunan"
-            value={biayaOperasionalTahunan}
-            onChange={(e) => setBiayaOperasionalTahunan(formatCurrency(parseNumber(e)))}
+            value={formatCurrency(parseNumber(biayaOperasionalTahunan))}
+            onChange={setBiayaOperasionalTahunan} // Corrected: Pass setBiayaOperasionalTahunan directly
             placeholder="Masukkan total biaya operasional tahunan"
             required
           />
           <InputField
             label="Harga Emas Saat Ini per Gram (Rp)"
             id="hargaEmas"
-            value={hargaEmas}
-            onChange={(e) => setHargaEmas(formatCurrency(parseNumber(e)))}
+            value={formatCurrency(parseNumber(hargaEmas))}
+            onChange={setHargaEmas} // Corrected: Pass setHargaEmas directly
             placeholder="Masukkan harga emas per gram"
             required
           />
